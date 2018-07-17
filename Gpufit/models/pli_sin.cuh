@@ -88,16 +88,6 @@ __device__ void calculate_plisin(
         t_rel /= cos(tau);
     }
 
-    // bounding
-    if (bounding){
-        alpha = copysign(1.0, 0.5 - floor(fmod(phi/pi, 2.))) * (fmod(alpha + pi/2., pi) - pi/2.);
-        phi = fmod(phi, pi);
-        t_rel = fabs(t_rel);
-        if (t_rel > 1){
-            t_rel = 0.5 * (sin(t_rel) + 1);
-        }
-    }
-
     // value
     value[point_index] = sin(2 * (rot - phi)) * sin(pi/2 * t_rel * cos(alpha) * cos(alpha));
 
