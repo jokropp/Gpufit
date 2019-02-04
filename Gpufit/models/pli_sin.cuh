@@ -11,7 +11,7 @@
     * rot - rotation
     * tilt - tilting direction (None, 0, 90, 180, 270) -> (0, 1, 2, 3, 4)
 * User Info needs to be
-[tau, sub_sample, bounding, n_tilts, n_rots, tilt_1, ..., tilt_n, rot_1, ..., rot_n]
+[tau, sub_sample, n_tilts, n_rots, tilt_1, ..., tilt_n, rot_1, ..., rot_n]
 */
 const REAL pi = 3.14159265358979f;
 
@@ -31,14 +31,13 @@ __device__ void calculate_plisin(
     REAL * user_info_float = (REAL*) user_info;
     REAL tau = user_info_float[0];
     int sub_sample = int(user_info_float[1]);
-    int bounding = int(user_info_float[2]);
-    int n_tilts = int(user_info_float[3]);
-    int n_rots = int(user_info_float[4]);
+    int n_tilts = int(user_info_float[2]);
+    int n_rots = int(user_info_float[3]);
     // apply sub sampling
     int index = point_index;
     index *= sub_sample;
-    REAL tilt = user_info_float[(int) index/n_rots + 5];
-    REAL rot = user_info_float[index%n_rots + n_tilts + 5];
+    REAL tilt = user_info_float[(int) index/n_rots + 4];
+    REAL rot = user_info_float[index%n_rots + n_tilts + 4];
 
     // get params (tilt them if needed)
     REAL phi, alpha, t_rel;
