@@ -4,7 +4,7 @@
 
 # CMake
 
-cmake_minimum_required( VERSION 3.11 )
+cmake_minimum_required( VERSION 3.7 )
 set_property( GLOBAL PROPERTY USE_FOLDERS ON )
 
 if( NOT PROJECT_NAME )
