@@ -69,6 +69,7 @@ void configure_model(ModelID const model_id, int & n_parameters, int & n_dimensi
     case LINEAR_1D:             n_parameters = 2; n_dimensions = 1; break;
     case FLETCHER_POWELL_HELIX:       n_parameters = 3; n_dimensions = 1; break;
     case BROWN_DENNIS:          n_parameters = 4; n_dimensions = 1; break;
+    case PLI_SIN:               n_parameters = 3; n_dimensions = 1; break;
     default:                                                        break;
     }
 }
