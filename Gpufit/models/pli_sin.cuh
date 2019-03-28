@@ -36,7 +36,7 @@ __device__ void calculate_plisin(
     // apply sub sampling
     int index = point_index;
     index *= sub_sample;
-    REAL tilt = user_info_float[(int) index/n_rots + 4];
+    int tilt = int(user_info_float[(int) index/n_rots + 4]);
     REAL rot = user_info_float[index%n_rots + n_tilts + 4];
 
     // get params (tilt them if needed)
@@ -45,11 +45,9 @@ __device__ void calculate_plisin(
     alpha = parameters[1];
     t_rel = parameters[2];
 
-    if (tilt == 0.0f){
-
-    }else{
-        REAL angles[4] = {0.0f, pi/2, pi, 3*pi/2};
-        REAL psi_t = angles[int(tilt) - 1];
+    if (tilt != 0){
+        // calculate the angel at which the plane is tilted
+        REAL psi_t = 2*(int(tilt)-1)*pi/(n_tilts-1);
 
         // create rotation_matrix
         REAL R[3][3] = {0};
