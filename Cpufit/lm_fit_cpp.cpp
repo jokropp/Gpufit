@@ -5,6 +5,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <cmath>
 
 LMFitCPP::LMFitCPP(
     REAL const tolerance,
